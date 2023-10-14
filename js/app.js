@@ -7,6 +7,9 @@ const app = createApp({
       msg: "Currency App"
     };
   },
+  mounted() {
+    console.log();
+  },
 });
 
 app.mount("#app");
