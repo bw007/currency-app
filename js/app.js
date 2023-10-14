@@ -1,14 +1,19 @@
-
 const { createApp, ref } = Vue;
 
 const app = createApp({
   data() {
     return {
-      msg: "Currency App"
+      msg: "",
     };
   },
   mounted() {
-    console.log();
+    axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
+      .then((res) => {
+        this.msg = res
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 
