@@ -3,19 +3,23 @@ const { createApp, ref } = Vue;
 const app = createApp({
   data() {
     return {
-      msg: "",
+      data: [],
     };
   },
+  methods: {
+    getCurrencyAll() {
+      axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
+        .then((res) => {
+          this.data = [...res.data];
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
   mounted() {
-    axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
-      .then((res) => {
-        this.msg = res
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.getCurrencyAll();
   },
 });
 
 app.mount("#app");
-
