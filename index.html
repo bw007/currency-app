@@ -9,15 +9,56 @@
       href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
     />
     <link rel="stylesheet" href="./css/style.css" />
+    <style>
+      .list {
+        position: relative;
+      }
+      .header [v-cloak] {
+        display: none;
+      }
+      .load-span {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        position: absolute;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .load-span span {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        animation: load 0.35s ease-in infinite;
+        border-radius: 100px;
+        border: 6px solid gray;
+        border-right-color: transparent;
+      }
+      [v-cloak] .load-span {
+        display: flex;
+      }
+      @keyframes load {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(180deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="app">
       <header class="header container">
         <h2 class="header__title">Valyuta kurslari</h2>
-        <h2>{{data[0]}}</h2>
+        <h2></h2>
       </header>
       <div class="container">
-        <ul class="list">
+        <ul v-cloak class="list">
+          <div class="load-span">
+            <span></span>
+          </div>
           <li v-for="({id, Code, Ccy, CcyNm_UZ, CcyNm_UZS, Rate, Diff}, i) in data" :key="Code" class="list__item">
             <img :title="Ccy" src="https://media.flaticon.com/dist/min/img/home/cards-products-section/circles/icons.png" alt="" class="list__item-flag">
             <div class="item-inner">

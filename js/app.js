@@ -11,6 +11,7 @@ const app = createApp({
       axios.get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/")
         .then((res) => {
           this.data = [...res.data];
+          console.log(this.data[0].Date);
         })
         .catch((err) => {
           console.log(err);
