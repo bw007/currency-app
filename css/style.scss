@@ -17,6 +17,9 @@ body {
   &__title {
     font-size: 24px;
   }
+  [v-cloak] {
+    display: none;
+  }
 }
 .container {
   max-width: 1230px;
