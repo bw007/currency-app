@@ -10,41 +10,8 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
     <style>
-      .list {
-        position: relative;
-      }
-      .load-span {
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        position: absolute;
+      [v-cloak] {
         display: none;
-        align-items: center;
-        justify-content: center;
-      }
-      .load-span span {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        animation: load 0.6s linear infinite;
-        border-radius: 100px;
-        border: 6px solid gray;
-        border-right-color: transparent;
-      }
-      .load [v-cloak] .load-span {
-        display: flex;
-      }
-      .header [v-cloak] {
-        display: none;
-      }
-      @keyframes load {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
       }
     </style>
   </head>
@@ -52,15 +19,12 @@
     <div id="app">
       <header class="header container">
         <h2 class="header__title">Valyuta kurslari</h2>
-        <h2></h2>
+        <h2 class="header__date" v-cloak>{{ data[0]?.Date }}</h2>
       </header>
-      <div class="load container">
+      <div class="container">
         <ul v-cloak class="list">
-          <div class="load-span">
-            <span></span>
-          </div>
-          <li v-for="({id, Code, Ccy, CcyNm_UZ, CcyNm_UZS, Rate, Diff}, i) in data" :key="Code" class="list__item">
-            <img :title="Ccy" src="" alt="" class="list__item-flag">
+          <li v-for="({id, Code, Ccy, CcyNm_UZ, Rate, Diff, flag}, i) in data" :key="Code" class="list__item">
+            <img :title="Ccy" :src="`./img/${Ccy}.png`" alt="" class="list__item-flag">
             <div class="item-inner">
               <p class="item-inner__content">
                 <span class="item-inner__lead">1 {{ Ccy }}</span> =

@@ -13,24 +13,24 @@ body {
   background-color: #eeeed2;
 }
 
-.header {
-  &__title {
-    font-size: 24px;
-  }
-  [v-cloak] {
-    display: none;
-  }
-}
 .container {
   max-width: 1230px;
   padding: 0 20px;
   margin: 10px auto;
 }
+
+.header {
+  &__title {
+    font-size: 24px;
+  }
+  &__date {
+    color: orange;
+  }
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(5, auto);
-  // justify-content: center;
-  // justify-items: center;
   background-color: #fff;
   &__item {
     display: flex;
@@ -43,7 +43,6 @@ body {
   }
   &__item-flag {
     width: 24px;
-    border-radius: 50px;
   }
   &__chart {
     width: 24px;
