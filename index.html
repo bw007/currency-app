@@ -17,13 +17,27 @@
   </head>
   <body>
     <div id="app">
+      <div class="modal" :class="{active}">
+        <div class="modal__body">
+          <div @click="active = false" class="modal__close">&#10540;</div>
+          <div class="modal__text">
+            <span v-if="!item.Date">Loading</span>
+            <div class="modal__content" v-else>
+              <img :title="item.Ccy" :src="`./img/${item.Ccy}.png`" alt="" class="list__item-flag">
+              <span>{{ item?.CcyNm_UZ }}</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
       <header class="header container">
         <h2 class="header__title">Valyuta kurslari</h2>
         <h2 class="header__date" v-cloak>{{ data[0]?.Date }}</h2>
+        <span v-cloak>{{ m }}</span>
       </header>
       <div class="container">
         <ul v-cloak class="list">
-          <li v-for="({id, Code, Ccy, CcyNm_UZ, Rate, Diff, flag}, i) in data" :key="Code" class="list__item">
+          <li @click="getModal(data[i])" v-for="({id, Code, Ccy, CcyNm_UZ, Rate, Diff, flag}, i) in data" :key="Code" class="list__item">
             <img :title="Ccy" :src="`./img/${Ccy}.png`" alt="" class="list__item-flag">
             <div class="item-inner">
               <p class="item-inner__content">
@@ -41,6 +55,7 @@
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.com/libraries/Chart.js"></script>
     <script src="./js/app.js"></script>
   </body>
 </html>

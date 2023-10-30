@@ -1,9 +1,13 @@
 const { createApp, ref } = Vue;
 
+
+
 const app = createApp({
   data() {
     return {
       data: [],
+      item: {},
+      active: false,
     };
   },
   methods: {
@@ -16,6 +20,10 @@ const app = createApp({
           console.log(err);
         });
     },
+    getModal(item) {
+      this.item = {...item};
+      this.active = !this.active;
+    }
   },
   mounted() {
     this.getCurrencyAll();
